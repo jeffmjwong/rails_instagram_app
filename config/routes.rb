@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :comments
-  resources :instaposts
   devise_for :users
+  resources :instaposts
+  resources(:comments, except: [:index])
   root to: "instaposts#index"
 end
