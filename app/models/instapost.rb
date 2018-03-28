@@ -1,5 +1,6 @@
 class Instapost < ApplicationRecord
   belongs_to :user
-  validates :caption, presence: true
   mount_uploader :photo, PhotoUploader
+  validates :caption, presence: true
+  validates :photo, presence: true
 end

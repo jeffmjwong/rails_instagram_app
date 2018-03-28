@@ -77,6 +77,6 @@ class InstapostsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def instapost_params
-      params.require(:instapost).permit(:caption, :user_id)
+      params.require(:instapost).permit(:caption, :user_id, :photo)
     end
 end

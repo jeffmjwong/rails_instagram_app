@@ -15,7 +15,7 @@
   <tbody>
     <% @instaposts.each do |instapost| %>
       <tr>
-        <td><%= "Placeholder Image" %></td>
+        <td><%= image_tag(instapost.photo_url(:thumb)) %></td>
         <td><%= instapost.caption %></td>
         <td><%= instapost.user.email %></td>
         <td><%= link_to 'Show', instapost %></td>
