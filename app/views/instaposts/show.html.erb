@@ -15,5 +15,7 @@
   <%= @instapost.user.email %>
 </p>
 
-<%= link_to 'Edit', edit_instapost_path(@instapost) %> |
+<% if @instapost.user == current_user %>
+  <%= link_to 'Edit', edit_instapost_path(@instapost) %> |
+<% end %>
 <%= link_to 'Back', instaposts_path %>

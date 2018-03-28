@@ -1,5 +1,6 @@
 class InstapostsController < ApplicationController
   before_action :set_instapost, only: [:show, :edit, :update, :destroy]
+  before_action :check_owner, only: [:edit, :destroy]
 
   # GET /instaposts
   # GET /instaposts.json
@@ -66,6 +67,12 @@ class InstapostsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_instapost
       @instapost = Instapost.find(params[:id])
+    end
+
+    def check_owner
+      if @instapost.user != current_user
+        redirect_to(instaposts_url, notice: "You cannot perform that action!")
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
