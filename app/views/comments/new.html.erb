@@ -1,5 +1,17 @@
 <h1>New Comment</h1>
 
+<p>
+  <% if @instapost.user == current_user %>
+    Photo by: Yourself
+  <% else %>
+    Photo by: <%= @instapost.user.email %>
+  <% end %>
+</p>
+
+<p>
+  <%= image_tag(@instapost.photo_url(:medium)) %>
+</p>
+
 <%= render 'form', comment: @comment %>
 
 <%= link_to 'Back', instapost_path %>

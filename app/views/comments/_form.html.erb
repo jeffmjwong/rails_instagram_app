@@ -1,14 +1,3 @@
-<p>
-  <% if @instapost.user == current_user %>
-    Photo by: Yourself
-  <% else %>
-    Photo by: <%= @instapost.user.email %>
-  <% end %>
-</p>
-
-<p>
-  <%= image_tag(@instapost.photo_url(:medium)) %>
-</p>
 
 <%= form_with(model: comment, local: true) do |form| %>
   <% if comment.errors.any? %>
