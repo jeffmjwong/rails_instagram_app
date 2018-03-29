@@ -29,14 +29,15 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     @comment.user = current_user
+    @instapost = Instapost.find(comment_params[:instapost_id])
 
     respond_to do |format|
       if @comment.save
         format.html { redirect_to instapost_path({ id: comment_params[:instapost_id] }), notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+       format.html { render :new }
+       format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,6 +45,7 @@ class CommentsController < ApplicationController
   # PATCH/PUT /comments/1
   # PATCH/PUT /comments/1.json
   def update
+    @instapost = Instapost.find(comment_params[:instapost_id])
     respond_to do |format|
       if @comment.update(comment_params)
         format.html { redirect_to instapost_path({ id: comment_params[:instapost_id] }), notice: 'Comment was successfully updated.' }
