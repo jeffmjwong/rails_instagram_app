@@ -1,10 +1,12 @@
 <p id="notice"><%= notice %></p>
 
-<% if @instapost.user != current_user %>
-  <p>
-    Photo by:<%= @instapost.user.email %>
-  </p>
-<% end %>
+<p>
+  <% if @instapost.user == current_user %>
+    Photo by: Yourself
+  <% else %>
+    Photo by: <%= @instapost.user.email %>
+  <% end %>
+</p>
 
 <p>
   <%= image_tag @instapost.photo_url(:medium) %>
@@ -15,12 +17,21 @@
   <%= @instapost.caption %>
 </p>
 
-<!-- NEED FIXING!
-<% if @instapost.comments == nil %>
+<% if @instapost.comments.ids == [] %>
   <%= link_to 'Add first comment', new_comment_path(@instapost) %>
 <% else %>
-  <p><%= @instapost.comments.first.content %></p>
-<% end %> -->
+  <p>
+    <strong>Comments:</strong><br>
+  <% @instapost.comments.each do |comment| %>
+    <%= comment.content %> - <%= comment.user.email %>
+    <%= link_to 'Edit', edit_comment_path(@instapost) %>
+    <br><br>
+  <% end %>
+    <%= link_to 'Add a comment', new_comment_path(@instapost) %>
+  </p>
+<% end %>
+
+<br><br>
 
 <% if @instapost.user == current_user %>
   <%= link_to 'Edit', edit_instapost_path(@instapost) %> |

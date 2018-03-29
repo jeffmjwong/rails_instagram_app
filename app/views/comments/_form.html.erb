@@ -1,3 +1,15 @@
+<p>
+  <% if @instapost.user == current_user %>
+    Photo by: Yourself
+  <% else %>
+    Photo by: <%= @instapost.user.email %>
+  <% end %>
+</p>
+
+<p>
+  <%= image_tag(@instapost.photo_url(:medium)) %>
+</p>
+
 <%= form_with(model: comment, local: true) do |form| %>
   <% if comment.errors.any? %>
     <div id="error_explanation">
@@ -17,13 +29,7 @@
   </div>
 
   <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :comment_user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :instapost_id %>
-    <%= form.text_field :instapost_id, id: :comment_instapost_id %>
+    <%= form.hidden_field :instapost_id, value: @instapost.id %>
   </div>
 
   <div class="actions">
