@@ -24,7 +24,7 @@
     <strong>Comments:</strong><br>
   <% @instapost.comments.each do |comment| %>
     <%= comment.content %> - <%= comment.user.email %>
-    <%= link_to 'Edit', edit_comment_path(@instapost) %>
+    <!-- <%= link_to 'Edit', edit_comment_path(@instapost) %> -->
     <br><br>
   <% end %>
     <%= link_to 'Add a comment', new_comment_path(@instapost) %>
