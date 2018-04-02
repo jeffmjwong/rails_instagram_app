@@ -18,23 +18,11 @@
   <% if @instapost.comments.present? %>
     <h2>Comments</h2>
     <% @instapost.comments.each do |comment| %>
-      <p>
-        <strong><%= comment.user.email %> says:</strong>
-        <%= comment.content %>
-      </p>
+      <%= render partial: "comments/comment", locals: { comment: comment } %>
     <% end %>
   <% end %>
   <h2>Add Comment</h2>
-  <%#= form_for @instapost.comments.new do |f| %>
-    <div class="field">
-      <%#= f.label :content, 'Comment' %>
-      <%#= f.text_area :content %>
-    </div>
-
-    <div class="actions">
-      <%#= f.submit %>
-    </div>
-  <%# end %>
+  <%= render partial: "comments/form", locals: { comment: @instapost.comments.new } %>
 </div>
 
 <% if @instapost.user == current_user %>
