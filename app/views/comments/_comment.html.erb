@@ -1,5 +1,12 @@
 <div>
-  <strong><%= comment.user.email %> says:</strong>
-  <%= comment.content %>
-  <p><%= link_to 'Edit', edit_instapost_comment_path(comment.instapost) %></p>
+  <p>
+    <strong><%= comment.user.email %> says:</strong>
+    <%= comment.content %>
+  </p>
+  <% if comment.user == current_user %>
+    <div class="comment-admin">
+      <%= link_to 'Edit', edit_instapost_comment_path(@instapost, comment) %>
+      <%= link_to 'Delete', [@instapost, comment], method: :delete %>
+    </div>
+  <% end %>
 </div>
