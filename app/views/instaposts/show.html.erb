@@ -16,12 +16,25 @@
 
 <div>
   <% if @instapost.comments.present? %>
-    <h2>Comments:</h2>
+    <h2>Comments</h2>
     <% @instapost.comments.each do |comment| %>
-      <p><%= comment %></p>
+      <p>
+        <strong><%= comment.user.email %> says:</strong>
+        <%= comment.content %>
+      </p>
     <% end %>
   <% end %>
-  <p><%= link_to 'Add Comment', new_instapost_comment_path(@instapost) %></p>
+  <h2>Add Comment</h2>
+  <%#= form_for @instapost.comments.new do |f| %>
+    <div class="field">
+      <%#= f.label :content, 'Comment' %>
+      <%#= f.text_area :content %>
+    </div>
+
+    <div class="actions">
+      <%#= f.submit %>
+    </div>
+  <%# end %>
 </div>
 
 <% if @instapost.user == current_user %>
