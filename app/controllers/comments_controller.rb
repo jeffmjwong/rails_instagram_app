@@ -35,6 +35,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
+    
     respond_to do |format|
       format.html { redirect_to @instapost, notice: 'Comment was removed.' }
       format.json { head :no_content }

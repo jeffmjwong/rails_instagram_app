@@ -1,9 +1,7 @@
 class InstapostsController < ApplicationController
   before_action :set_instapost, only: [:show, :edit, :update, :destroy]
   before_action :check_owner, only: [:edit, :update, :destroy]
-
-  # GET /instaposts
-  # GET /instaposts.json
+  
   def index
     @instaposts = Instapost.all
   end
