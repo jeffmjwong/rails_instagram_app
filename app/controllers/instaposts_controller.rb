@@ -1,27 +1,21 @@
 class InstapostsController < ApplicationController
   before_action :set_instapost, only: [:show, :edit, :update, :destroy]
   before_action :check_owner, only: [:edit, :update, :destroy]
-  
+
   def index
     @instaposts = Instapost.all
   end
 
-  # GET /instaposts/1
-  # GET /instaposts/1.json
   def show
   end
 
-  # GET /instaposts/new
   def new
     @instapost = Instapost.new
   end
 
-  # GET /instaposts/1/edit
   def edit
   end
 
-  # POST /instaposts
-  # POST /instaposts.json
   def create
     @instapost = Instapost.new(instapost_params)
     @instapost.user = current_user
@@ -37,8 +31,6 @@ class InstapostsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /instaposts/1
-  # PATCH/PUT /instaposts/1.json
   def update
     respond_to do |format|
       if @instapost.update(instapost_params)
@@ -51,8 +43,6 @@ class InstapostsController < ApplicationController
     end
   end
 
-  # DELETE /instaposts/1
-  # DELETE /instaposts/1.json
   def destroy
     @instapost.destroy
     respond_to do |format|
